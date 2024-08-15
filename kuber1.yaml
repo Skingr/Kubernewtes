@@ -1,0 +1,50 @@
+apiVersion: apps/v1 # specifies what api version --appsv1 is for deployment of kubernetes
+
+# specifies kind of Kubernetes obj being created--Deployment for " manages a set of identical pods (instances of your application) to ensure they are running."
+kind: Deployment  
+
+
+metadata:
+    name: counter-app
+# gives dployment a name which is used to identify it w/in the cluster
+spec:
+# creates 3 instances of cluster running @ all times (3 instances of "counter-app" runs @ all times
+    replicas: 100 
+
+# matchLabels -- matches labels to select "app - counter-app" 
+selector:
+    matchLabels: 
+
+#defines template for Kubernetes pod to run on 
+template: 
+metadata: 
+    labels: 
+#creates labels for each pod deployed--mentioned label being "app - counter-app"
+spec: 
+    containers:
+        name: counter-app # gives container w/ a pod a name
+        image: your-registry/counter-app
+# your-registry/counter-app:v1 refers to the container image stored in a registry.
+
+#"Exposes port 3000 from the container to the Kubernetes networking layer, so other services can communicate with this container on that port."
+ports:
+     containerPort: 3000
+resources:
+    requests: 
+	cpu: 100m
+	#.1 CPU to run 
+	memory: 128Mi
+	#"The container requests 128 MiB of memory as the minimum it needs to function."
+limits:
+    cpu 500m: 
+# .5 cpu limit
+
+ 
+#
+#summary: 
+#replicas -- ensure 3 cases of counter app are always running
+#Container image: Deploys the application from the specified image (your-registry/counter-app:v1).
+# "Resources: Manages CPU and memory usage, ensuring the app has enough resources to run without overconsuming resources on the node."
+# Containers are lightweight, standalone, and executeable software 
+
+

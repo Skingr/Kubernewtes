@@ -1,0 +1,15 @@
+.yaml
+
+
+----
+files are broken up into key and vlue pairs
+key: value
+key and value separated by a colon and a space
+
+
+--
+lists
+(arrays) are represented by a "- "
+ex)
+items:
+item1 - 
